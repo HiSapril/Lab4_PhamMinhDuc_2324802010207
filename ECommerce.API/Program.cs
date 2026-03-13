@@ -6,6 +6,7 @@ using ECommerce.Domain.Services;
 using ECommerce.Infrastructure.Persistence;
 using ECommerce.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Messaging.Common.Extensions;
 
 namespace ECommerce.API
 {
@@ -14,6 +15,8 @@ namespace ECommerce.API
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddRabbitMq("localhost", "guest", "guest", "/");
 
             // Add services to the container.
             builder.Services.AddControllers()
